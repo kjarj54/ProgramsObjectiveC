@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  objcapp:
+    build:
+      context: .
+    command: ./your_executable
