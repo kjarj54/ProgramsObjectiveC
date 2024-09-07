@@ -1,22 +1,24 @@
-# Usa una imagen base de Ubuntu
+# Use the official Ubuntu image
 FROM ubuntu:20.04
 
-# Instala las dependencias necesarias
+# Install necessary packages
 RUN apt-get update && apt-get install -y \
     build-essential \
     clang \
+    gnustep \
     libobjc-7-dev \
-    gnustep-devel \
+    gnustep-devel\
     gnustep-make
 
-# Establece el directorio de trabajo
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Copia el código fuente al contenedor
+# Copy the source code into the container
 COPY . .
 
-# Compila el código Objective-C
-RUN make
+# Compile the Objective-C files
+RUN clang -I/usr/include/GNUstep -o main main.m -lobjc -lgnustep-base
+RUN clang -I/usr/include/GNUstep -o calc calc.m -lobjc -lgnustep-base
 
-# Define el comando por defecto para ejecutar el contenedor
-CMD ["./your_executable"]
+# Default command to run the main executable
+CMD ["./main"]
