@@ -1,10 +1,10 @@
-//Hola mundo en objective c
-
 #import <Foundation/Foundation.h>
 
 int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        NSLog(@"Hello, World!");
-    }
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];  // Create autorelease pool
+
+    NSLog(@"Hello World, Objective-C");
+
+    [pool drain];  // Drain autorelease pool
     return 0;
 }
